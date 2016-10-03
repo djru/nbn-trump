@@ -1,0 +1,106 @@
+<html>
+<head>
+	<style>
+	@import 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i';
+
+body {
+	background: #570faf;
+}
+
+section#main {
+	width: 600px;
+	font-family: 'PT Serif', serif;
+	margin: 100px auto;
+	color: white;
+}
+
+#trump {
+	font-size: 2em;
+	margin-bottom: 50px;
+	font-style: italic;
+}
+
+#figure {
+	font-size: 3em;
+	font-style: italic;
+	font-weight: bold;
+	display: inline;
+	cursor: pointer;
+}
+#modal {
+    width: 200px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    color: #570faf;
+    text-decoration: underline;
+    position: absolute;
+		box-shadow: 2px 2px 10px gray;
+}
+
+
+#figure-container{
+	margin-bottom: 50px;
+}
+
+.hidden{
+	display: none;
+}
+
+span#enough {
+	font-style: italic;
+}
+
+input#another {
+	display: block;
+	margin: 0 auto;
+	font-size: 2em;
+	border-radius: 20px;
+	background: white;
+	border: 3px solid white;
+	color: #570faf;
+	font-weight: bold;
+	padding: 10px;
+	width: 600px;
+	font-family: 'PT Serif';
+	outline: none;
+	cursor: pointer;
+}
+
+input#another:hover {background: #570faf;color: white;}
+	</style>
+</head>
+<body>
+<section id="main"><div id="trump">
+	In 1995, Donald Trump's failed deals lost him $916 million.  <span id="enough">That's enough to... </span>
+</div>
+  <div id="figure-container">
+		<div id="figure"></div>
+</div>
+  <input type="button" id="another" value="Wow, show me another stat!">
+	<div id="modal" class="hidden"></div>
+  </section>
+</body>
+<script>
+  var stats = [{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were $34,313,925."},{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were $645.3 million for 2014"},{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are 9018 undergraduates and the average one bedroom appartment in evanston in $1410"}]
+	var ctr = 0;
+	document.onreadystatechange = document.querySelector('#another').onclick = function(e){
+		document.querySelector('#figure').innerHTML = stats[ctr % stats.length]['text'];
+		document.querySelector('#modal').innerHTML = stats[ctr % stats.length]['note'];
+		ctr++;
+	}
+	var movemodal = document.querySelector('#figure').onmouseenter = function(e){
+		var modal = document.querySelector('#modal');
+		modal.classList.remove('hidden');
+		modal.style.left = e.clientX;
+		modal.style.top = e.clientY;
+
+		document.onmousemove = movemodal;
+
+	};
+	document.querySelector('#figure').onmouseleave = function(e){
+		document.querySelector('#modal').classList.add('hidden');
+		document.onmousemove = null;
+	};
+</script>
+</html>
