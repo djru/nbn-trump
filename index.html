@@ -27,7 +27,7 @@ section#main {
 	display: inline;
 	cursor: pointer;
 }
-#modal {
+#popover {
     width: 200px;
     padding: 10px;
     background: white;
@@ -78,29 +78,42 @@ input#another:hover {background: #570faf;color: white;}
 		<div id="figure"></div>
 </div>
   <input type="button" id="another" value="Wow, show me another stat!">
-	<div id="modal" class="hidden"></div>
+	<div id="popover" class="hidden"></div>
   </section>
 </body>
 <script>
-  var stats = [{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were $34,313,925."},{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were $645.3 million for 2014"},{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are 9018 undergraduates and the average one bedroom appartment in evanston in $1410"}]
-	var ctr = 0;
-	document.onreadystatechange = document.querySelector('#another').onclick = function(e){
-		document.querySelector('#figure').innerHTML = stats[ctr % stats.length]['text'];
-		document.querySelector('#modal').innerHTML = stats[ctr % stats.length]['note'];
-		ctr++;
-	}
-	var movemodal = document.querySelector('#figure').onmouseenter = function(e){
-		var modal = document.querySelector('#modal');
-		modal.classList.remove('hidden');
-		modal.style.left = e.clientX;
-		modal.style.top = e.clientY;
+	document.onreadystatechange = function(e){
+		// array of json objects with our stats
+		var stats = [{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were $34,313,925."},{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were $645.3 million for 2014"},{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are 9018 undergraduates and the average one bedroom appartment in evanston in $1410"}]
+		// keeps track of which stat to show
+		var ctr = 0;
+		// define variables for the elements
+		var popover = document.querySelector('#popover');
+		var figure = document.querySelector('#figure');
+		// when user clicks, show next stat and incremenet counter
+		var updateView = document.querySelector('#another').onclick = function(e){
+			figure.innerHTML = stats[ctr % stats.length]['text'];
+			popover.innerHTML = stats[ctr % stats.length]['note'];
+			ctr++;
+		}
+		// position the popover to the current mouse location
+		var positionpopover = function(e){
+			popover.style.left = e.clientX;
+			popover.style.top = e.clientY;
+		};
+		// when hovering, show the popover, position it, and update position when mouse moves
+		figure.onmouseenter = function(e){
+			popover.classList.remove('hidden');;
+			positionpopover(e);
+			document.onmousemove = positionpopover;
 
-		document.onmousemove = movemodal;
-
-	};
-	document.querySelector('#figure').onmouseleave = function(e){
-		document.querySelector('#modal').classList.add('hidden');
-		document.onmousemove = null;
+		};
+		// after hovering is done, hide popover and unbind event
+		figure.onmouseleave = function(e){
+			popover.classList.add('hidden');
+			document.onmousemove = null;
+		};
+		updateView();
 	};
 </script>
 </html>
