@@ -4,14 +4,14 @@
 	@import 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i';
 
 body {
-	background: #570faf;
+	background: white;
 }
 
 section#main {
 	width: 600px;
 	font-family: 'PT Serif', serif;
 	margin: 100px auto;
-	color: white;
+	color: #570faf;
 }
 
 #trump {
@@ -28,19 +28,13 @@ section#main {
 	cursor: pointer;
 }
 #popover {
-    width: 200px;
-    padding: 10px;
-    background: white;
-    border-radius: 8px;
-    color: #570faf;
-    text-decoration: underline;
-    position: absolute;
-		box-shadow: 2px 2px 10px gray;
+    padding: 20px 0;
 }
 
 
 #figure-container{
 	margin-bottom: 50px;
+	height: 300px;
 }
 
 .hidden{
@@ -56,9 +50,9 @@ input#another {
 	margin: 0 auto;
 	font-size: 2em;
 	border-radius: 20px;
-	background: white;
-	border: 3px solid white;
-	color: #570faf;
+	background: #570faf;
+	border: 3px solid #570faf;
+	color: white;
 	font-weight: bold;
 	padding: 10px;
 	width: 600px;
@@ -67,7 +61,10 @@ input#another {
 	cursor: pointer;
 }
 
-input#another:hover {background: #570faf;color: white;}
+input#another:hover {
+	background: white;
+	color: #570faf;
+}
 	</style>
 </head>
 <body>
@@ -76,15 +73,15 @@ input#another:hover {background: #570faf;color: white;}
 </div>
   <div id="figure-container">
 		<div id="figure"></div>
+		<div id="popover" class=""></div>
 </div>
   <input type="button" id="another" value="Wow, show me another stat!">
-	<div id="popover" class="hidden"></div>
   </section>
 </body>
 <script>
 	document.onreadystatechange = function(e){
 		// array of json objects with our stats
-		var stats = [{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were $34,313,925."},{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were $645.3 million for 2014"},{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are 9018 undergraduates and the average one bedroom appartment in evanston in $1410"}]
+		var stats = [{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were $34,313,925."},{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were $645.3 million for 2014."},{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are 9,018 undergraduates and the average one bedroom appartment in evanston in $1,410."},{text:"Pay every faculty member's salary for over 5 years.", note: "There were 1,115 faculty members in 2014, and each made an average of $153,000."}]
 		// keeps track of which stat to show
 		var ctr = 0;
 		// define variables for the elements
@@ -102,17 +99,17 @@ input#another:hover {background: #570faf;color: white;}
 			popover.style.top = e.clientY;
 		};
 		// when hovering, show the popover, position it, and update position when mouse moves
-		figure.onmouseenter = function(e){
-			popover.classList.remove('hidden');;
-			positionpopover(e);
-			document.onmousemove = positionpopover;
-
-		};
-		// after hovering is done, hide popover and unbind event
-		figure.onmouseleave = function(e){
-			popover.classList.add('hidden');
-			document.onmousemove = null;
-		};
+		// figure.onmouseenter = function(e){
+		// 	popover.classList.remove('hidden');;
+		// 	positionpopover(e);
+		// 	document.onmousemove = positionpopover;
+		//
+		// };
+		// // after hovering is done, hide popover and unbind event
+		// figure.onmouseleave = function(e){
+		// 	popover.classList.add('hidden');
+		// 	document.onmousemove = null;
+		// };
 		updateView();
 	};
 </script>
