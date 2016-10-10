@@ -1,5 +1,6 @@
 <html>
 <head>
+	<title>Trumped</title>
 	<style>
 	@import 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i';
 
@@ -29,6 +30,10 @@ section#main {
 }
 #popover {
     padding: 20px 0;
+}
+
+a{
+	color: #570faf !important;
 }
 
 
@@ -81,7 +86,20 @@ input#another:hover {
 <script>
 	document.onreadystatechange = function(e){
 		// array of json objects with our stats
-		var stats = [{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were $34,313,925."},{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were $645.3 million for 2014."},{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are 9,018 undergraduates and the average one bedroom appartment in evanston in $1,410."},{text:"Pay every faculty member's salary for over 5 years.", note: "There were 1,115 faculty members in 2014, and each made an average of $153,000."}]
+		var stats = [
+			{text: "Staff Northwestern's Libraries for 27 years.", note: "Northwestern's Library expenditures for 2013-14 were <a href='http://www.adminplan.northwestern.edu/ir/data-book/v47/10.03-library-expenditures.pdf'>$34,313,925</a>."},
+			{text: "Fund every Northwestern professor's research for the next 17 months.", note: "Research and Development expenditures were <a href='http://www.adminplan.northwestern.edu/ir/data-book/v47/7.01-rd-expenditures.pdf'>$645.3 million</a> for 2014."},
+			{text:"Rent a one bedroom appartment for every undergraduate student for the next 6 years.", note: "There are <a href='http://colleges.startclass.com/q/1257/22/How-many-students-go-to-Northwestern-University'>9,018</a> undergraduates and the average one bedroom appartment in evanston in <a href='http://evanstonnow.com/story/real-estate/bill-smith/2015-04-03/69635/median-one-bedroom-rent-drops-again-in-evanston'>$1,410</a>."},
+			{text:"Pay every faculty member's salary for over 5 years.", note: "There were 1,115 <a href='http://www.adminplan.northwestern.edu/ir/data-book/v47/8.09-Average%20Salary.pdf'>faculty members</a> in 2014, and each made an average of $153,000."},
+			{text:"Buy a lower-level, midfield season football ticket for every Evanston resident for 40 years.", note:"Evanston has <a href='http://cityofevanston.org/evanston-life/history-demographics/'>75,570 residents</a> and season tickets are <a href='http://www.nusports.com/sports/2015/3/18/GEN_20140101408.aspx?id=408'>$309</a>."},
+			{text:"Buy a copy of Professor Gordon's new book for every person in Illinois, Indiana and Michigan.", note:"The book goes for $25 on <a href='https://www.amazon.com/Rise-Fall-American-Growth-Princeton/dp/0691147728'>Amazon</a> and Illinois, Indiana and Michigan have <a href='http://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?src=bkmk'>populations</a> of 12.9, 6.6 and 9.9 million respectively."},
+			{text:"Give every child in the US an equivalency meal.", note: "There are about <a href='http://www.aecf.org/resources/the-changing-child-population-of-the-united-states'>47 million children</a> in the US and an dinner equivalency meal is <a href='https://northwestern.sodexomyway.com/dining-plans/'>$9</a>."},
+			{text:"Buy almost 3 million General Chemistry textbooks.", note: "A new CHEM 101 textbook can be purchased at the Norris bookstore for <a href='http://northwestern.bncollege.com/webapp/wcs/stores/servlet/BNCBTBListView'>312.65.</a>"},
+			{text:"Award free tuition to over 18,000 students for the 2016-2017 school year.", note:"Tuition for full-time Northwestern students costs <a href='http://admissions.northwestern.edu/tuition-aid/index.html'>$50,412</a> this academic year."},
+			{text:"Order over 183 million sandwiches from Cheesie's Pub and Grill.", note:"'The Original' costs <a href='http://cheesies.com/menu/'>$4.99</a>."},
+			{text:"Purchase 91.6 million CTA 1-Day passes.", note:"A one day CTA pass costs <a href='http://www.transitchicago.com/fares/'>$10.</a>"},
+			{text:"Match every dollar Dance Marathon has ever raised 50 times.", note:"Dance Marathon has raised around <a href='https://www.nudm.org/about/'>$18 million</a> since it began in 1975."}
+		];
 		// keeps track of which stat to show
 		var ctr = 0;
 		// define variables for the elements
